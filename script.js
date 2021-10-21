@@ -1,7 +1,13 @@
 const btnGerar = document.getElementById('btnGerar');
 
 function roleta() {
-  const places = ['Burguer King', 'Verace Pizza', 'Habbibs', 'Terraço Pizza Bar', 'Pizzaria Tres Irmaos', 'Alguma barraca na rua', 'Stockyards Angus', 'Gugu Gourmet']
+  let places = ''
+  if(localStorage.getItem('listOfPlaces')){
+    places = JSON.parse(localStorage.getItem('listOfPlaces'))
+  } else {
+    displayWarningMessage()
+    return places = ''
+  }
   const randomNumber = Math.floor(Math.random() * places.length);
   return places[randomNumber]
 }
@@ -9,6 +15,11 @@ function roleta() {
 function getRandomPlace() {
   const placeHtml = document.getElementById('place');
   placeHtml.innerText = roleta()
+}
+
+function displayWarningMessage() {
+  const warningElement = document.getElementById('warning-message')
+  warningElement.classList.add('active')
 }
 
 btnGerar.addEventListener('click', getRandomPlace)

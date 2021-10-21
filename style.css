@@ -11,8 +11,11 @@ body {
 }
 
 body .title {
-  font-family: 'Rampart One', cursive;
   font-size: 60px;
+}
+
+.title, h3 {
+  font-family: 'Rampart One', cursive;
 }
 
 .subtitle {
@@ -32,6 +35,22 @@ body .title {
   border-radius: 5px;
 }
 
+#warning-message {
+  display: none;
+  background-color: #ff9966;
+  margin: 10px auto 0 auto;
+  padding: 5px;
+  width: 500px;
+}
+
+#warning-message p {
+  margin: 0;
+}
+
+#warning-message.active {
+  display: block;
+}
+
 #btnGerar {
   border: none;
   border-radius: 5px;
@@ -44,3 +63,8 @@ body .title {
 
 }
 
+/* LINKS */
+.link-to-add-places {
+  display: block;
+  margin-top: 20px;
+}
