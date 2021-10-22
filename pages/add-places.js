@@ -32,16 +32,24 @@ function resetFormField() {
 function updateDom(places) {
   const list = document.getElementById('add-place-list')
   if(typeof places == 'string') {
-    const newListItem = document.createElement('li')
-    newListItem.innerText = places
-    list.appendChild(newListItem)
+    createListItem(list, places)
   } else {
     places.forEach(place => {
-      const listItems = document.createElement('li')
-      listItems.innerText = place
-      list.appendChild(listItems)
+      createListItem(list, place)
     })
   }
-  
- 
+}
+
+function createListItem(parentElement, place) {
+  const listItems = document.createElement('li')
+  listItems.innerText = place
+  listItems.appendChild(createDeleteListItemButton())
+  parentElement.appendChild(listItems)
+}
+
+function createDeleteListItemButton() {
+  const deleteButton = document.createElement('button')
+  deleteButton.classList.add('delete-list-item')
+  deleteButton.innerText = 'X'
+  return deleteButton
 }

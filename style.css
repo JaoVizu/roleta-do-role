@@ -51,7 +51,8 @@ body .title {
   display: block;
 }
 
-#btnGerar {
+#btnGerar,
+#add-place-button {
   border: none;
   border-radius: 5px;
   background-color: rgb(202, 161, 214);
@@ -61,6 +62,48 @@ body .title {
   outline: none;
   padding: 10px 15px;
 
+}
+
+#add-place-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#add-place-input {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 13px 15px;
+  margin-right: 5px;
+
+}
+
+#add-place-list {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+#add-place-list li {
+  display: grid;
+  grid-template-columns: 30px 170px 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#add-place-list li::before {
+  content: '🍻';
+  margin-right: 5px;
+  font-size: 24px;
+}
+
+.delete-list-item {
+  border: none;
+  background: none;
+  color: rgba(255, 0, 0, .8);
+  cursor: pointer;
+  padding: 10px;
 }
 
 /* LINKS */
