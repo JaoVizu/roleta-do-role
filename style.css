@@ -84,7 +84,7 @@ body .title {
 #add-place-list {
   list-style-type: none;
   padding-left: 0px;
-  max-height: 150px;
+  max-height: 250px;
   overflow-y: scroll;
 }
 
