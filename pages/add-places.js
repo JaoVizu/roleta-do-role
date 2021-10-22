@@ -2,8 +2,7 @@ const addPlaceInput = document.getElementById('add-place-input')
 const button = document.getElementById('add-place-button')
 
 if(localStorage.getItem('listOfPlaces')){
-  console.log('Lugares', JSON.parse(localStorage.getItem('listOfPlaces')))
-  updateDom(JSON.parse(localStorage.getItem('listOfPlaces')))
+  updateDom(getPlacesFromLocalStorage())
 }
 
 button.addEventListener('click', event => {
@@ -15,9 +14,9 @@ button.addEventListener('click', event => {
   const inputValue = addPlaceInput.value  
   if(!localStorage.getItem('listOfPlaces')) {
     localStorage.setItem('listOfPlaces', JSON.stringify([inputValue]))
-    updateDom(JSON.parse(localStorage.getItem('listOfPlaces')))
+    updateDom(getPlacesFromLocalStorage())
   }else {
-    let addedPlaces =  JSON.parse(localStorage.getItem('listOfPlaces'))
+    let addedPlaces =  getPlacesFromLocalStorage()
     addedPlaces.push(inputValue)
     localStorage.setItem('listOfPlaces', JSON.stringify(addedPlaces))
     updateDom(inputValue)
@@ -29,11 +28,16 @@ function resetFormField() {
   addPlaceInput.value = ''
 }
 
+function getPlacesFromLocalStorage() {
+  return JSON.parse(localStorage.getItem('listOfPlaces'))
+}
+
 function updateDom(places) {
   const list = document.getElementById('add-place-list')
   if(typeof places == 'string') {
     createListItem(list, places)
   } else {
+    list.innerText = ''
     places.forEach(place => {
       createListItem(list, place)
     })
@@ -49,7 +53,16 @@ function createListItem(parentElement, place) {
 
 function createDeleteListItemButton() {
   const deleteButton = document.createElement('button')
+  deleteButton.addEventListener('click', ev => deletePlaceFromList(ev.target.parentElement.innerText.replace('X', '').trim()))
   deleteButton.classList.add('delete-list-item')
   deleteButton.innerText = 'X'
   return deleteButton
+}
+
+function deletePlaceFromList(item) {
+  const places = getPlacesFromLocalStorage()
+  const itemIndex = places.indexOf(item)
+  places.splice(itemIndex, 1)
+  localStorage.setItem('listOfPlaces', JSON.stringify(places))
+  updateDom(getPlacesFromLocalStorage())
 }

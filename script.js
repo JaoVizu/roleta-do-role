@@ -2,7 +2,7 @@ const btnGerar = document.getElementById('btnGerar');
 
 function roleta() {
   let places = ''
-  if(localStorage.getItem('listOfPlaces')){
+  if(localStorage.getItem('listOfPlaces') && JSON.parse(localStorage.getItem('listOfPlaces')).length > 0){
     places = JSON.parse(localStorage.getItem('listOfPlaces'))
   } else {
     displayWarningMessage()
